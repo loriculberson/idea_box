@@ -1,0 +1,12 @@
+<h3> Edit </h3>
+<div id="ideas_list">
+	<%= form_for(@idea) do |f|%>
+		<%= f.label :name %>
+		<%= f.text_field :name %><br>
+
+		<%= f.label :body %>
+		<%= f.text_field :body %>
+		
+		<%= f.submit "update" %>	
+	<% end %>
+</div>
