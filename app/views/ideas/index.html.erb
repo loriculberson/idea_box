@@ -1,0 +1,22 @@
+<h1> Your Ideas</h1>
+<p> Look at all of you wonderful ideas!</p>
+
+<ul>
+	<% @ideas.each do |idea| %>
+		<li><%=link_to idea.name, idea_path(idea) %>
+
+		<% end %>
+</ul>
+
+<%= link_to "new idea", new_idea_path %>
+
+
+
+
+		
+		
+	
+
+
+
+
