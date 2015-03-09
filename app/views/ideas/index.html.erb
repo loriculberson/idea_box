@@ -1,14 +1,20 @@
-<h1> Your Ideas</h1>
-<p> Look at all of you wonderful ideas!</p>
+<div id="my_ideas"> 
+	<h1> <%= @user.username %>'s Idea Box
 
-<ul>
-	<% @ideas.each do |idea| %>
-		<li><%=link_to idea.name, idea_path(idea) %>
+	</h1>
+	<p> Look at all of you wonderful ideas!</p>
 
+	<ul>
+		<% @ideas.each do |idea| %>
+			<li><%=link_to idea.name, user_idea_path(idea.user_id, idea.id) %></li>
+			<!-- #      user_idea GET    /users/:user_id/ideas/:id(.:format)      ideas#show 
+			I need 2 params -->
 		<% end %>
-</ul>
+	</ul>
+</div>
 
-<%= link_to "new idea", new_idea_path %>
+	<%= link_to "add idea", new_user_idea_path %>
+
 
 
 

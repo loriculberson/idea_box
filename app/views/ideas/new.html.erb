@@ -8,13 +8,13 @@
 
 <h3> Create a new idea! </h3>
 
-<%= form_for(Idea.new) do |f|%>
+<%= form_for([@user, @idea]) do |f|%>
 	<%= f.label :name %>
 	<%= f.text_field :name %><br>
 
 	<%= f.label :body %>
 	<%= f.text_field :body %>
 
-	<%= f.submit "add idea" %>
+	<%= f.submit "submit idea" %>
 
 <% end %>

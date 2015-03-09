@@ -1,0 +1,9 @@
+<div id="banner">
+	<h3> <%= current_user.username %>'s Idea Box</h3>
+
+	<%= form_for(:user, url: logout_path) do |f| %>
+
+
+		<%= f.submit "logout" %>
+	<% end %>
+</div>
