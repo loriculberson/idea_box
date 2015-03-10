@@ -1,11 +1,21 @@
 class IdeasController < ApplicationController
 
 	def index
-		@ideas = Idea.all
+	# 	@ideas = Idea.all
+	# end
+
+		# if current_user.admin?
+		# 	@ideas = Idea.all
+		# elsif current_user
+		if current_user
+		@ideas = Idea.where(user_id: current_user.id)
+		# else
+			redirect_to login_path
+		end
 	end
 
 	def show
-		@idea = Idea.find(params[:id])
+		@idea = Idea.find(params[:user_id])
 	end
 
 	def edit
@@ -17,7 +27,7 @@ class IdeasController < ApplicationController
 	end
 
 	def create
-		@idea = Idea.new(idea_params)
+		@idea = current_user.ideas.new(idea_params)
 
 		if @idea.save
 			redirect_to ideas_path
@@ -27,7 +37,7 @@ class IdeasController < ApplicationController
 	end
 
 	def update
-		@idea = Idea.find(params[:id])
+		@idea = Idea.find(params[:user_id])
 		if @idea.update(idea_params)
 			redirect_to ideas_path
 		else

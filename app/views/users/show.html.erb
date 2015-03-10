@@ -1,0 +1,16 @@
+
+<div id="banner">
+	<h3> Welcome to <%= current_user.username %>'s Ideas</h3>
+
+	<ul id="ideas_list">
+		<% @ideas.each do |idea| %>
+			<li><%=link_to idea.name, idea_path(idea) %></li>
+		<% end %>
+
+	</ul>
+
+
+	<%= form_for(:user, url: logout_path) do |f| %>
+		<%= f.submit "Welcome" %>
+	<% end %>
+</div>
