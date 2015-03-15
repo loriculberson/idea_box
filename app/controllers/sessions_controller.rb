@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 		if user && user.authenticate(params[:session][:password])
 			session[:user_id] = user.id
 
-			redirect_to user_path(user)
+			redirect_to ideas_path
 		else
 			flash[:errors] = "Invalid entry"
 			render :new
@@ -19,5 +19,4 @@ class SessionsController < ApplicationController
 		session[:user_id] = nil
 		redirect_to login_path
 	end
-
 end

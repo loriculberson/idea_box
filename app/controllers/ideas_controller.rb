@@ -1,21 +1,16 @@
 class IdeasController < ApplicationController
+  before_filter :authorize
 
 	def index
-	# 	@ideas = Idea.all
-	# end
-
-		# if current_user.admin?
-		# 	@ideas = Idea.all
-		# elsif current_user
-		if current_user
-		@ideas = Idea.where(user_id: current_user.id)
-		# else
-			redirect_to login_path
+		if current_user.admin?
+			@ideas = Idea.all 
+		else
+			@ideas = current_user.ideas #Idea.where(user_id: current_user.id)
 		end
 	end
 
 	def show
-		@idea = Idea.find(params[:user_id])
+		@idea = current_user.ideas.find(params[:id])
 	end
 
 	def edit
@@ -37,7 +32,8 @@ class IdeasController < ApplicationController
 	end
 
 	def update
-		@idea = Idea.find(params[:user_id])
+		# @idea = Idea.find(params[:id])
+		@idea = current_user.ideas.find(params[:id])
 		if @idea.update(idea_params)
 			redirect_to ideas_path
 		else
@@ -54,6 +50,12 @@ class IdeasController < ApplicationController
 	private
  	def idea_params
 	  params.require(:idea).permit(:name, :body)
+  end
+
+  def authorize
+  	if current_user.nil?
+  		redirect_to login_path, alert: "Not authorized"
+  	end
   end
 
 end
