@@ -4,7 +4,7 @@ RSpec.describe Idea, type: :model do
 
 
 let(:idea) {
-	Idea.new(name: "dream", body: "eat ice cream")
+	Idea.new(name: "dream", body: "eat ice cream", user_id: 1)
 }
 	it "exits" do
 		expect(idea).to be_valid
