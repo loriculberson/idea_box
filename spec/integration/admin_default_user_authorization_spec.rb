@@ -11,10 +11,11 @@ RSpec.describe "the idea view for different users", type: :feature do
 
   context "admin user " do
     it "can view all users ideas" do
-      admin = User.create!(username: "Admin", password: "password", role: "admin" )
-      user = User.create!(username: "Lori", password: "password", role: "default" )
-      Idea.create!(name: "incredible dinner", body: "Fogo de Chao", user_id: user.id)
-      Idea.create!(name: "see fish", body: "Aquarium", user_id: user.id)
+      admin = User.create!(username: "Admin", password: "password", role: "admin")
+      user = User.create!(username: "Lori", password: "password", role: "default")
+      category = Category.create(name: "Shopping")
+      Idea.create!(name: "incredible dinner", body: "Fogo de Chao", user_id: user.id, category: category )
+      Idea.create!(name: "see fish", body: "Aquarium", user_id: user.id, category: category)
       log_in_user(admin)
 
       expect(page).to have_content("incredible dinner")
@@ -24,7 +25,8 @@ RSpec.describe "the idea view for different users", type: :feature do
     it "can view a user's idea details" do
       admin = User.create!(username: "Admin", password: "password", role: "admin" )
       user = User.create!(username: "Lori", password: "password", role: "default" )
-      idea = Idea.create!(name: "Venice", body: "travel to Italy", user_id: user.id)
+      category = Category.create(name: "Shopping")
+      idea = Idea.create!(name: "Venice", body: "travel to Italy", user_id: user.id, category: category)
       log_in_user(admin)
 
       click_link_or_button "Venice"

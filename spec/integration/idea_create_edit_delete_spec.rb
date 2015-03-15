@@ -6,19 +6,23 @@ RSpec.describe "the idea view", type: :feature do
   let(:idea) { Idea.create(name: 'Great idea', body: 'go hiking in a land far away', user_id: user.id) }
   context "with valid attributes" do
     it "creates and displays new idea" do
+      category = Category.create!(name: "Food")
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       visit new_idea_path
       fill_in 'Name', :with => 'Dream'
       fill_in 'Body', :with => 'eat ice cream all day'
+      select('Food', :from => 'Category')
       click_link_or_button 'add idea'
       expect(page).to have_content('Dream')
+      click_link_or_button "Dream"
+      expect(page).to have_content("Food")
     end
   end
 
  		it "can update the idea" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       visit edit_idea_path(idea.id)
-
+      
       fill_in 'Name', :with => 'new idea name'
       fill_in 'Body', :with => 'new idea body'
 
