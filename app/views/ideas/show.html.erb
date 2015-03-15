@@ -1,8 +1,14 @@
 <h2> Idea Details </h2>
 
+<% if current_user.admin? %>
+  <h4> Creator: <%=@idea.user.username %></h4>
+<% end %>
+
 <h4> <%= @idea.name %> </h4>
 <p>  <%= @idea.body %> </p>
 
 <%=link_to 'ideas index', ideas_path %>
-<%=link_to "update", edit_idea_path(@idea) %>
-<%=link_to "delete", idea_path(@idea), method: :delete %>
+<% if !current_user.admin? %>
+  <%=link_to "update", edit_idea_path(@idea) %>
+  <%=link_to "delete", idea_path(@idea), method: :delete %>
+<% end %>

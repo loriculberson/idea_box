@@ -3,9 +3,16 @@
 
   <ul id="ideas_list">
     <% @ideas.each do |idea| %>
-      <li><%=link_to idea.name, idea_path(idea)%> 
-      <%=link_to "update", edit_idea_path(idea) %>
-      <%= link_to "delete", idea_path(idea), method: :delete %></li>
+      
+      <li>
+        <%=link_to idea.name, idea_path(idea)%> 
+        <% if current_user.admin? %>
+           Creator: <%=idea.user.username%> 
+        <% else %>
+          <%=link_to "update", edit_idea_path(idea)%>
+          <%= link_to "delete", idea_path(idea), method: :delete %>
+        <% end %>
+      </li>
     <% end %>
   </ul>
 

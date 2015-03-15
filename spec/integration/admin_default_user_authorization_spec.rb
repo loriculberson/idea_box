@@ -21,7 +21,16 @@ RSpec.describe "the idea view for different users", type: :feature do
       expect(page).to have_content("see fish")
     end
 
-    it ""
+    it "can view a user's idea details" do
+      admin = User.create!(username: "Admin", password: "password", role: "admin" )
+      user = User.create!(username: "Lori", password: "password", role: "default" )
+      idea = Idea.create!(name: "Venice", body: "travel to Italy", user_id: user.id)
+      log_in_user(admin)
+
+      click_link_or_button "Venice"
+      expect(current_path).to eq(idea_path(idea))
+    end
+
 
 
   end

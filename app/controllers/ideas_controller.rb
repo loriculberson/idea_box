@@ -5,12 +5,17 @@ class IdeasController < ApplicationController
 		if current_user.admin?
 			@ideas = Idea.all 
 		else
-			@ideas = current_user.ideas #Idea.where(user_id: current_user.id)
+			@ideas = current_user.ideas
 		end
 	end
 
 	def show
-		@idea = current_user.ideas.find(params[:id])
+		if current_user.admin?
+			@idea = Idea.find(params[:id])
+		else
+			@idea = current_user.ideas.find(params[:id])
+		end
+		#Idea.where(user_id: current_user.id, id: params[:id]).first
 	end
 
 	def edit
