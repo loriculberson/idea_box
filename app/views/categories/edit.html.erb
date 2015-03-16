@@ -1,0 +1,6 @@
+<h3> Update Category! </h3>
+<%= form_for(@category) do |f| %>
+  <%= f.label :name, "update category" %>
+  <%= f.text_field :name %>
+<%= f.submit "update" %>
+<% end %>

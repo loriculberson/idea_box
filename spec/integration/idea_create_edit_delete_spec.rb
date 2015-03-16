@@ -19,7 +19,7 @@ RSpec.describe "the idea view", type: :feature do
     end
   end
 
- 		it "can update the idea" do
+ 		xit "can update the idea" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
       visit edit_idea_path(idea.id)
       
@@ -31,7 +31,7 @@ RSpec.describe "the idea view", type: :feature do
       expect(page).to have_content('Ideas')
     end
 
-    it "can delete an idea" do
+    xit "can delete an idea" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
  			visit idea_path(idea.id)
       click_link_or_button 'delete'

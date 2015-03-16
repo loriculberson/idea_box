@@ -10,7 +10,7 @@
            Creator: <%=idea.user.username%> 
         <% else %>
           <%=link_to "update", edit_idea_path(idea)%>
-          <%= link_to "delete", idea_path(idea), method: :delete %>
+          <%=link_to "delete", idea_path(idea), method: :delete%>
         <% end %>
       </li>
     <% end %>
@@ -18,5 +18,9 @@
 
   <%= link_to "new idea", new_idea_path %>
   <%= link_to "logout", logout_path, method: :delete %>
+  <% if current_user.admin? %>
+    <%= link_to "create category", new_category_path %>
+    <%= link_to "all categories", categories_path %>
+  <% end %>
 </div>
 
