@@ -4,7 +4,7 @@ RSpec.describe Idea, type: :model do
 
 
 let(:idea) {
-	Idea.new(name: "dream", body: "eat ice cream", user_id: 1)
+	Idea.new(name: "dream", body: "eat ice cream", user_id: 1, category_id: 1)
 }
 	it "exits" do
 		expect(idea).to be_valid
@@ -22,6 +22,11 @@ let(:idea) {
 
 	it "is not valid without a name" do
 		idea.body = nil
+		expect(idea).not_to be_valid
+	end
+
+	it "is not valid without a category" do
+		idea.category_id = nil
 		expect(idea).not_to be_valid
 	end
 

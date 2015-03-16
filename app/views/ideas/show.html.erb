@@ -4,8 +4,13 @@
   <h4> Creator: <%=@idea.user.username %></h4>
 <% end %>
 
-<h4> <%= @idea.name %> </h4>
-<p>  <%= @idea.body %> </p>
+<h4><%= @idea.name %></h4>
+<%= @idea.body %>
+<% if @idea.category.nil? %>
+  <p> No category listed </p>
+<% else %>
+  <h4><%= @idea.category.name %></h4>
+<% end %>
 
 <%=link_to 'ideas index', ideas_path %>
 <% if !current_user.admin? %>

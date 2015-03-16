@@ -15,6 +15,9 @@
 	<%= f.label :body %>
 	<%= f.text_field :body %>
 
+	<%= f.label :category_id %>
+	<%= f.collection_select(:category_id, Category.all, :id, :name) %>
+
 	<%= f.submit "add idea" %>
 
 <% end %>
